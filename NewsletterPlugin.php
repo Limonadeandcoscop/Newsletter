@@ -36,10 +36,17 @@ class NewsletterPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * @var array Filters for the plugin.
      */
-    protected $_filters = array(
-        
-    );
+    protected $_filters = array('admin_navigation_main');
 
+
+    /**
+     * Add 'Newsletter' link in backoffice menu
+     */
+    public function filterAdminNavigationMain($navArray)
+    {
+        $navArray['Newsletter'] = array('label'=>__('Newsletter'), 'uri'=>url('newsletter/admin'));
+        return $navArray;
+    }
 
     /**
      * The install process
@@ -105,7 +112,7 @@ class NewsletterPlugin extends Omeka_Plugin_AbstractPlugin
     public function hookDefineRoutes($args)
     {
         // Don't add these routes on the admin side to avoid conflicts.
-        if (is_admin_theme()) return;
+        // if (is_admin_theme()) return;
 
         // Include routes file
         $router = $args['router'];

@@ -55,7 +55,7 @@ class Newsletter_NewsletterController extends Omeka_Controller_AbstractActionCon
                 // Update status
                 $user->status = 'ok';
                 $user->save();
-                $this->_helper->redirector->gotoRoute(array(), 'newsletter_ok');
+                $this->_helper->redirector->gotoUrl(WEB_ROOT . '/newsletter/ok');
             }
         }
         throw new Exception("Invalid parameter", 1);
